@@ -14,18 +14,18 @@ public class usuario {
     private String direccion;
     private String correo;
     private String telefono;
-    private String contraseña;
+    private String pass;
 
     public usuario() {
     }
 
-    public usuario(int id, String nombre, String direccion, String correo, String telefono, String contraseña) {
+    public usuario(int id, String nombre, String direccion, String correo, String telefono, String pass) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.correo = correo;
         this.telefono = telefono;
-        this.contraseña = contraseña;
+        this.pass = pass;
     }
 
     public int getId() {
@@ -68,12 +68,12 @@ public class usuario {
         this.telefono = telefono;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPass() {
+        return pass;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
     
     

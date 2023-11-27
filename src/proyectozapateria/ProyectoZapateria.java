@@ -6,6 +6,7 @@
 package proyectozapateria;
 
 import java.util.Scanner;
+import modelo.conexion;
 
 /**
  *
@@ -13,11 +14,11 @@ import java.util.Scanner;
  */
 public class ProyectoZapateria {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        
+        
+        /*Scanner sc = new Scanner(System.in);
         Administrador admin = new Administrador();
 
         int respMenu, respSw;
@@ -187,6 +188,10 @@ public class ProyectoZapateria {
                     break;
             }
 
-        } while (respMenu!=7);
+        } while (respMenu!=7);*/
+        
+        conexion con = new conexion();
+        
+        
     }
 }
