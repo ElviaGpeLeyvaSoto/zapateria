@@ -15,17 +15,20 @@ public class usuario {
     private String correo;
     private String telefono;
     private String pass;
+    private String rol;
 
+    
     public usuario() {
     }
 
-    public usuario(int id, String nombre, String direccion, String correo, String telefono, String pass) {
+    public usuario(int id, String nombre, String direccion, String correo, String telefono, String pass, String rol) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
         this.correo = correo;
         this.telefono = telefono;
         this.pass = pass;
+        this.rol = rol;
     }
 
     public int getId() {
@@ -74,6 +77,13 @@ public class usuario {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
     
     

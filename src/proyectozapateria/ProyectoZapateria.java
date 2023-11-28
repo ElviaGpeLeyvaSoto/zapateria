@@ -5,8 +5,11 @@
  */
 package proyectozapateria;
 
+import controlador.usuario;
+import java.util.List;
 import java.util.Scanner;
-import modelo.conexion;
+import modelo.conexion.baseDatos;
+import modelo.usuarioDAO;
 
 /**
  *
@@ -190,8 +193,34 @@ public class ProyectoZapateria {
 
         } while (respMenu!=7);*/
         
-        conexion con = new conexion();
+        //baseDatos conexion = new baseDatos();
+        
+        usuarioDAO daousuario = new usuarioDAO();
         
         
+        usuario u = new usuario();
+        
+        u.setNombre("paulina");
+        u.setDireccion("san geronimo");
+        u.setCorreo("pau@correo.com");
+        u.setTelefono("6221555807");
+        u.setRol("administrador");
+        u.setPass("1234");
+        
+        int num_control = daousuario.agregar(u);
+        
+        if(num_control > 0){
+            u.setId(num_control);
+            System.out.println("Usuario agregado");
+            
+        }else{
+            System.out.println("no se puede agregar usuario");
+        }
+        
+        List<usuario> usuarios = daousuario.obtener();
+        
+        for(usuario a: usuarios){
+            System.out.println(a.toString());
+        }
     }
 }

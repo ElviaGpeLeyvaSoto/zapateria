@@ -13,12 +13,12 @@ public class zapato {
     private String nombre;
     private String talla;
     private double precio;
-    private int categoria;
+    private String categoria;
 
     public zapato() {
     }
 
-    public zapato(int id, String nombre, String talla, double precio, int categoria) {
+    public zapato(int id, String nombre, String talla, double precio, String categoria) {
         this.id = id;
         this.nombre = nombre;
         this.talla = talla;
@@ -58,11 +58,11 @@ public class zapato {
         this.precio = precio;
     }
 
-    public int getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(int categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
     
