@@ -116,7 +116,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        Usuario avista = new Usuario(this,true,0);
+        /*Usuario avista = new Usuario(this,true,0);
+        avista.setVisible(true);*/
+        USUARIOS avista = new USUARIOS();
         avista.setVisible(true);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 

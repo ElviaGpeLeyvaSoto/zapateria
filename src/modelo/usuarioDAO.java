@@ -36,6 +36,7 @@ public class usuarioDAO implements CRUD<usuario> {
                 PreparedStatement st = bd.getConn().prepareStatement(sql.toString(),
                         PreparedStatement.RETURN_GENERATED_KEYS);
 
+                
                 st.setString(1, u.getNombre());
                 st.setString(2, u.getDireccion());
                 st.setString(3, u.getCorreo());

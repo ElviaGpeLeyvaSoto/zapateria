@@ -14,14 +14,14 @@ import java.sql.SQLException;
  */
 public class baseDatos {
     //Atributos
-    private Connection conn=null;
+    private Connection conn = null;
     private String error = new String();
    
-    private String _url = "jdbc:mysql://localhost:3306/dzapateria?useSSL=false";
+    private String _url = "jdbc:mysql://localhost:3306/dbzapateria?useSSL=false";
     private String _user= "root";
     private String _password ="admin";
     
-//Contructor
+//Constructor
     public baseDatos(){
          
         try {
@@ -29,6 +29,7 @@ public class baseDatos {
             conn = DriverManager.getConnection(_url,_user,_password);
         } catch (Exception e) {
             error = e.getMessage();
+            System.out.println("no se pudo conectar a la base de datos,error:" + error);
         }
         
     }

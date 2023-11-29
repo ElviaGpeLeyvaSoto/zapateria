@@ -1,40 +1,32 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
 
 import controlador.usuario;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.usuarioDAO;
+import static vista.Usuario.tablaA;
 
 /**
  *
  * @author eglso
  */
-public class Usuario extends javax.swing.JDialog {
+public class USUARIOS extends javax.swing.JFrame {
+
     public static DefaultTableModel tablaA;
     private int noControl = 0;
     private usuarioDAO dao = null;
-
+    usuario user = new usuario();
     /**
-     * Creates new form Usuario
+     * Creates new form USUARIOS
      */
-    public Usuario(JFrame padre, boolean modal, int noControl) {
-        super(padre,modal);
+    public USUARIOS() {
         initComponents();
-        setLocationRelativeTo(padre);
-        
-    }
-    
-    public Usuario(JFrame padre, boolean modal, int noControl, usuario user){
-        super(padre, modal);
-        initComponents();
-        setLocationRelativeTo(padre);
         dao = new usuarioDAO();
         tablaA = (DefaultTableModel) tblUsuario.getModel();
         lblid.setText(""+ user.getId());
@@ -44,7 +36,6 @@ public class Usuario extends javax.swing.JDialog {
         txtTelefono.setText(user.getTelefono());
         txtPassword.setText(user.getPass());
         cbxRol.setSelectedItem(user.getRol());
-        
     }
 
     /**
@@ -81,6 +72,8 @@ public class Usuario extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -217,7 +210,7 @@ public class Usuario extends javax.swing.JDialog {
                             .addComponent(jLabel8)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -266,7 +259,7 @@ public class Usuario extends javax.swing.JDialog {
                                 .addComponent(btnBuscar)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtBuscar))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,22 +282,59 @@ public class Usuario extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        usuario u = new usuario();
+        u.setId(this.noControl);
+        u.setNombre(txtNombre.getText());
+        u.setDireccion(txtDireccion.getText());
+        u.setCorreo(txtCorreo.getText());
+        u.setTelefono(txtTelefono.getText());
+        u.setPass(txtPassword.getText());
+        u.setRol(cbxRol.getSelectedItem().toString());
+
+        if(this.noControl == 0){
+            int _numeroControl = dao.agregar(u);
+            System.out.println("Respuesta Agregar: " + _numeroControl);
+            JOptionPane.showMessageDialog(this, "Se ha agregado con numero de control: " + _numeroControl);
+        }else if(this.noControl > 0){
+            int respuesta = dao.agregar(u);
+            System.out.println("Respuesta Editar: " + respuesta);
+            JOptionPane.showMessageDialog(this, "Se ha editado correctamente" +respuesta);
+        }
+        LimpiarCampos();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        vaciarTabla();
+        List<usuario> usuarios = dao.obtener();
+        List<usuario> resultados = new ArrayList();
+        for(usuario u : usuarios){
+            if(txtBuscar.getText().equals(u.getNombre())){
+                resultados.add(u);
+            }
+        }
+        cargarTablaAC(resultados);
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void LimpiarCampos(){
         this.noControl=0;
@@ -336,41 +366,9 @@ public class Usuario extends javax.swing.JDialog {
             tablaA.removeRow(i);
         }
     }
-    
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       usuario u = new usuario();
-       u.setId(this.noControl);
-       u.setNombre(txtNombre.getText());
-       u.setDireccion(txtDireccion.getText());
-       u.setCorreo(txtCorreo.getText());
-       u.setTelefono(txtTelefono.getText());
-       u.setPass(txtPassword.getText());
-       u.setRol(cbxRol.getSelectedItem().toString());
-       
-       if(this.noControl == 0){
-           int _numeroControl = dao.agregar(u);
-            System.out.println("Respuesta Agregar: " + _numeroControl);
-            JOptionPane.showMessageDialog(this, "Se ha agregado con numero de control: " + _numeroControl); 
-       }else if(this.noControl > 0){
-             int respuesta = dao.agregar(u);
-             System.out.println("Respuesta Editar: " + respuesta);
-             JOptionPane.showMessageDialog(this, "Se ha editado correctamente" +respuesta);
-       }
-       LimpiarCampos();
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        vaciarTabla();
-       List<usuario> usuarios = dao.obtener();
-       List<usuario> resultados = new ArrayList();
-       for(usuario u : usuarios){
-           if(txtBuscar.getText().equals(u.getNombre())){
-               resultados.add(u);
-           }
-       }
-        cargarTablaAC(resultados);
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -385,20 +383,20 @@ public class Usuario extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(USUARIOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(USUARIOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(USUARIOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(USUARIOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-              //new Usuario().setVisible(true);
+                new USUARIOS().setVisible(true);
             }
         });
     }

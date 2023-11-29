@@ -200,6 +200,7 @@ public class ProyectoZapateria {
         
         usuario u = new usuario();
         
+        u.setId(1);
         u.setNombre("paulina");
         u.setDireccion("san geronimo");
         u.setCorreo("pau@correo.com");
@@ -214,7 +215,7 @@ public class ProyectoZapateria {
             System.out.println("Usuario agregado");
             
         }else{
-            System.out.println("no se puede agregar usuario");
+            System.out.println("No se puede agregar usuario");
         }
         
         List<usuario> usuarios = daousuario.obtener();
